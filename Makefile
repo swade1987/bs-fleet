@@ -23,32 +23,32 @@ initialise:
 
 local-check-duplicate-release-name:
 	clear
-	docker run --rm --platform $(BUILDPLATFORM) --name check-duplicate-release-name -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/check-duplicate-release-name.sh`"
+	docker run --rm --platform $(BUILDPLATFORM) --name check-duplicate-release-name -v $(CURRENT_WORKING_DIR)/clusters:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/check-duplicate-release-name.sh`"
 
 local-kubeconform-checks:
 	clear
-	docker run --rm --platform $(BUILDPLATFORM) --name kubeconform -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/kubeconform-checks.sh`"
+	docker run --rm --platform $(BUILDPLATFORM) --name kubeconform -v $(CURRENT_WORKING_DIR)/clusters:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/kubeconform-checks.sh`"
 
 local-pluto-checks:
 	clear
-	docker run --rm --platform $(BUILDPLATFORM) --name pluto -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/pluto-checks.sh`"
+	docker run --rm --platform $(BUILDPLATFORM) --name pluto -v $(CURRENT_WORKING_DIR)/clusters:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/pluto-checks.sh`"
 
 local-istio-checks:
 	clear
-	docker run --rm --platform $(BUILDPLATFORM) --name istio-checks -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/istio-checks.sh`"
+	docker run --rm --platform $(BUILDPLATFORM) --name istio-checks -v $(CURRENT_WORKING_DIR)/clusters:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/istio-checks.sh`"
 
 local-kustomization-yaml-fix:
 	clear
-	docker run --rm --platform $(BUILDPLATFORM) --name kustomization-yaml-fix -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) kustomization-yaml-fix /kustomize
+	docker run --rm --platform $(BUILDPLATFORM) --name kustomization-yaml-fix -v $(CURRENT_WORKING_DIR)/clusters:/kustomize $(TOOLKIT_IMAGE) kustomization-yaml-fix /kustomize
 
 # Usage make diff-env a=sbx b=bh
 .PHONY: diff-env
 diff-env:
-	@git diff --no-index kustomize/{$(a),$(b)}
+	@git diff --no-index clusters/{$(a),$(b)}
 
 test-%:
 	mkdir -p _test
-	kustomize build kustomize/$* > _test/$*.yaml
+	kustomize build clusters/$* > _test/$*.yaml
 	@echo
 	@echo The output can be found at _test/$*.yaml
 

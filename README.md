@@ -1,8 +1,8 @@
 [![kustomize-checks](https://github.com/swade1987/flux2-kustomize-template/actions/workflows/kustomize-checks.yaml/badge.svg)](https://github.com/swade1987/flux2-kustomize-template/actions/workflows/kustomize-checks.yaml)
 
-# Flux Kustomize Template
+# Business Solutions Fleet
 
-This is an opinionated Kustomize template to use as a starting point for new projects.
+This is an opinionated structure for bootstrapping Kubernetes clusters with [flux](https://github.com/fluxcd/flux2).
 
 ## Features
 
@@ -18,8 +18,7 @@ This is an opinionated Kustomize template to use as a starting point for new pro
 ## Directory Structure
 
 ```
-kustomize
-├── _base                               # Base Kustomize resources (non-cluster specific)
+clusters
 ├── us-west-2-platform-engineering-prd  # Kustomize overlays for specific cluster (prd)
 └── us-west-2-platform-engineering-sbx  # Kustomize overlays for specific cluster (sbx)
 ```

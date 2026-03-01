@@ -16,7 +16,7 @@ This script is executed within our `kubernetes-toolkit` container which can be f
 
 ## kubeconform
 
-We validate the resources within each sub-directory under the `kustomize` directory against the JSON schema definitions for:
+We validate the resources within each sub-directory under the `cluster` directory against the JSON schema definitions for:
 
 1. The version of Kubernetes we are using.
 2. The version of [flux](https://github.com/fluxcd/flux2) we are using.
@@ -43,7 +43,7 @@ This script is executed within our `kubernetes-toolkit` container which can be f
 
 ## istio-checks
 
-We validate the resources within each sub-directory under the `environments` directory against the JSON schema definitions for the version of Istio we are using.
+We validate the resources within each sub-directory under the `clusters` directory against the JSON schema definitions for the version of Istio we are using.
 
 This is made possible by leveraging a tool called `istioctl` which can be found [here](https://istio.io/latest/docs/reference/commands/istioctl/).
 
