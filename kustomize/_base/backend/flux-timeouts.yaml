@@ -1,0 +1,16 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ignored-but-required
+spec:
+  interval: 10m
+  timeout: 3m
+  install:
+    timeout: 3m
+    remediation:
+      retries: 3
+  upgrade:
+    timeout: 3m
+    remediation:
+      retries: 3
